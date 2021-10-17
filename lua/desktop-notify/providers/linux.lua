@@ -18,7 +18,7 @@ function M.notify(msg, level)
 	Job
 		:new({
 			command = "notify-send",
-			args = { "-u", l, "nvim", msg },
+			args = { "-u", l, "Neovim", msg },
 		})
 		:start()
 end
