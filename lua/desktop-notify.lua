@@ -1,21 +1,21 @@
-local Job = require("plenary.job")
-
-local M = {}
+local M = {
+	current_provider = nil,
+	providers = { "desktop-notify/providers/linux" },
+}
 
 function M.notify(msg, level)
-	local l = "low"
-	if level == vim.log.levels.WARN then
-		l = "normal"
-	elseif level == vim.log.levels.ERROR then
-		l = "critical"
+	if M.current_provider then
+		require("current_provider").notify(msg, level)
+	else
+		for _, value in ipairs(M.providers) do
+			local provider = require(value)
+			if provider.should_use_provider() then
+				M.current_provider = value
+				provider.notify(msg, level)
+				break
+			end
+		end
 	end
-
-	Job
-		:new({
-			command = "notify-send",
-			args = { "-u", l, "nvim", msg },
-		})
-		:start()
 end
 
 function M.override_vim_notify()
