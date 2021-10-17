@@ -1,6 +1,6 @@
 local M = {
 	current_provider = nil,
-	providers = { "desktop-notify/providers/linux" },
+	providers = { "desktop-notify/providers/linux", "desktop-notify/providers/mac" },
 }
 
 function M.notify(msg, level)
