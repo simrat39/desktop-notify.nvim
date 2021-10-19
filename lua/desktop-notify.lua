@@ -5,7 +5,7 @@ local M = {
 
 function M.notify(msg, level)
 	if M.current_provider then
-		require("current_provider").notify(msg, level)
+		require(M.current_provider).notify(msg, level)
 	else
 		for _, value in ipairs(M.providers) do
 			local provider = require(value)
