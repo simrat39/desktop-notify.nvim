@@ -4,9 +4,11 @@ Show desktop notifications for vim.notify calls
 ## Requirements
 
 - `neovim 0.5+`
-- `linux`
-- `notify-send`
 - `plenary.nvim`
+
+## Supported platforms
+- Linux
+- MacOS
 
 ## Installation
 
