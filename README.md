@@ -7,14 +7,13 @@ Show desktop notifications for vim.notify calls
 - `plenary.nvim`
 
 ## Supported platforms
-- Linux
-- MacOS
+- Linux (notify-send)
 
 ## Installation
 
 using `packer.nvim`
 
-```
+```lua
 use 'nvim-lua/plenary.nvim'
 use 'simrat39/desktop-notify.nvim'
 ```
@@ -22,7 +21,6 @@ use 'simrat39/desktop-notify.nvim'
 ## Usage
 
 ```lua
-
 -- Overrides vim.notify
 require("desktop-notify").override_vim_notify()
 
