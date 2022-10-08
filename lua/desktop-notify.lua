@@ -46,10 +46,13 @@ function M.open_history()
 
 	vim.api.nvim_win_set_buf(winnr, bufnr)
 
+	local line = 0
 	for i, value in ipairs(M.history) do
-		local line = i - 1
-		vim.api.nvim_buf_set_lines(bufnr, line, line, false, { value.msg })
-		vim.api.nvim_buf_add_highlight(bufnr, -1, level_to_hl(value.level), line, 0, -1)
+		for line_str in value.msg:gmatch("([^\n]*)\n?") do
+			vim.api.nvim_buf_set_lines(bufnr, line, line, false, { line_str })
+			vim.api.nvim_buf_add_highlight(bufnr, -1, level_to_hl(value.level), line, 0, -1)
+			line = line + 1
+		end
 	end
 end
 
